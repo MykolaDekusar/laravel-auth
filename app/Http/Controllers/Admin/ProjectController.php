@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\User;
 use PhpParser\Node\Stmt\Echo_;
 
 class ProjectController extends Controller
@@ -15,6 +16,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        return view('admin.index');
+    }
+
+    public function posts()
+    {
+        return view('admin.posts');
     }
 
     /**
