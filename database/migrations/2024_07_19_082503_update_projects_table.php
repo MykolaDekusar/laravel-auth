@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('description');
             $table->string('slug');
             $table->string('image')->nullable();
-            $table->dateTime('uploaded')->nullable();
         });
     }
 
@@ -30,7 +29,6 @@ return new class extends Migration
             $table->drop('description');
             $table->drop('slug');
             $table->drop('image');
-            $table->drop('uploaded');
         });
     }
 };

@@ -1,1 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
+
+.page-link {
+    color: black;
+    .active {
+        color: white;
+    }
+}
+
+.active {
+    .page-link {
+        background-color: rgb(38, 38, 38);
+        border-color: white;
+    }
+}

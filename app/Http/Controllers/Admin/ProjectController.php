@@ -16,12 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
-    }
-
-    public function posts()
-    {
-        return view('admin.posts');
+        return view('admin.posts.index', ['posts' => Project::orderBy('created_at')->paginate(5)]);
     }
 
     /**
@@ -51,9 +46,10 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(string $id)
     {
-        //
+        $data = Project::findOrFail($id);
+        return view('admin.posts.edit', compact('data'));
     }
 
     /**
@@ -69,6 +65,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index');
     }
 }
