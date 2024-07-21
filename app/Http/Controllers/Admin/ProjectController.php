@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Str;
 use App\Models\User;
 use PhpParser\Node\Stmt\Echo_;
 
@@ -24,7 +25,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -32,7 +33,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+        // creo uno slug dal titolo e lo assegno al data
+        $data['slug'] = Str::of($data['title'])->slug('-');
+
+        $project = new Project();
+        $project->title = $data['title'];
+        $project->description = $data['description'];
+        $project->slug = $data['slug'];
+        $project->save();
+
+        return redirect()->route('admin.projects.index')->with('message', `Articolo $project->title creato correttamente`);
     }
 
     /**
@@ -40,16 +51,15 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.posts.show', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        $data = Project::findOrFail($id);
-        return view('admin.posts.edit', compact('data'));
+        return view('admin.posts.edit', compact('project'));
     }
 
     /**
@@ -57,7 +67,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated();
+        $project->update($data);
+        return redirect()->route('admin.projects.show', $project);
     }
 
     /**

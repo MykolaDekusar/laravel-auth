@@ -13,8 +13,11 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        {{ __('You are logged in!') }}
+                        <div class="d-flex justify-content-between align-items-center">
+                            {{ __('You are logged in!') }}
+                            <a type="button" class="btn btn-success" href="{{ route('admin.projects.index') }}">Vai alla
+                                lista</a>
+                        </div>
                     </div>
                 </div>
             </div>

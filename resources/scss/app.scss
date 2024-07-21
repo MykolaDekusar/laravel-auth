@@ -1,3 +1,4 @@
+@use "./snippets/formStyle" as *;
 @import "~bootstrap/scss/bootstrap";
 
 .page-link {
@@ -7,9 +8,39 @@
     }
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.back-arrow {
+    font-size: 1rem;
+}
+
 .active {
     .page-link {
         background-color: rgb(38, 38, 38);
         border-color: white;
     }
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    margin: 1rem 0;
+}
+
+.buttons {
+    width: 335px;
+    margin: 0 auto;
+}
+
+.error {
+    font-size: 15px;
+    background-color: white;
+    color: red;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
 }
